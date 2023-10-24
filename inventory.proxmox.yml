@@ -48,14 +48,15 @@ want_facts: true
 want_proxmox_nodes_ansible_host: false
 # cache: true
 # strict: false
+# filters:
+#   - proxmox_status == "running" or proxmox_status == "stopped"
 compose:
-  # ansible_host: proxmox_net0.ip | proxmox_agent_interfaces[1].ip-addresses[0] | default( omit )
-  ansible_host: proxmox_agent_interfaces[1]['ip-addresses'][0] | default(proxmox_ipconfig0.ip)
-  ip: proxmox_ipconfig0.ip | default( omit )
-  vmid: proxmox_vmid | default( omit )
-  node: proxmox_node | default( omit )
-  cpu: proxmox_cores | default( omit )
-  mem: proxmox_memory | default( omit )
-  os: proxmox_ostype | default( omit )
-  status: proxmox_status | default( omit )
-  desc: proxmox_description | default( omit )
+  ansible_host: proxmox_agent_interfaces[1]['ip-addresses'][0] | default(proxmox_ipconfig0.ip) | ansible.utils.ipv4('address')
+  ip: proxmox_agent_interfaces | items2dict(key_name='name', value_name='ip-addresses')
+  vmid: proxmox_vmid
+  node: proxmox_node
+  cpu: proxmox_cores
+  mem: proxmox_memory
+  os: proxmox_ostype
+  status: proxmox_status
+  desc: proxmox_description

@@ -1,3 +1,3 @@
 {% for host in vars['play_hosts'] %}
-{{ host }};"{{ hostvars[host]['ansible_host'] | default() }}";{{ hostvars[host]['ip'] | default() }};{{ hostvars[host]['vmid'] | default() }};{{ hostvars[host]['node'] | default() }};{{ hostvars[host]['cpu'] | default() }};{{ hostvars[host]['mem'] | default() }};{{ hostvars[host]['os'] | default() }};{{ hostvars[host]['status'] | default() }};"{{ hostvars[host]['desc'] | default() }}"
+{{ host }};{{ hostvars[host]['ansible_host'] | default() }};"{{ hostvars[host]['ip'] | default() }}";{{ hostvars[host]['vmid'] | default() }};{{ hostvars[host]['node'] | default() }};{{ hostvars[host]['cpu'] | default() }};{{ hostvars[host]['mem'] | default() }};{{ hostvars[host]['os'] | default() }};{{ hostvars[host]['status'] | default() }};"{{ hostvars[host]['desc'] | default() }}"
 {% endfor %}

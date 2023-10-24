@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: all,!proxmox_nodes
   gather_facts: no
   tasks:
     - name: Hosts

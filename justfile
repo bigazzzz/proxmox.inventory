@@ -11,8 +11,13 @@ default:
     @just --list --unsorted
 
 commit +MESSAGE:
-    @just check-secret
     git pull
     git add -A
     git commit -m "{{MESSAGE}}"
     git push
+
+run:
+    ansible-playbook -i inventory.proxmox.yml proxmox.cluster.vm.playbook.yml
+
+inventory:
+    ansible-inventory -i inventory.proxmox.yml --list

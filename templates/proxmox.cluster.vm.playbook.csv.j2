@@ -1,0 +1,3 @@
+{% for host in vars['play_hosts'] %}
+{{ host }};"{{ hostvars[host]['ansible_host'] }}";{{ hostvars[host]['ip'] }};{{ hostvars[host]['vmid'] }};{{ hostvars[host]['node'] }};{{ hostvars[host]['cpu'] }};{{ hostvars[host]['mem'] }};{{ hostvars[host]['os'] }};{{ hostvars[host]['status'] }};"{{ hostvars[host]['desc'] }}"
+{% endfor %}

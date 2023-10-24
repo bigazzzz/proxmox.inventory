@@ -1,0 +1,11 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Hosts
+      template:
+        src: proxmox.cluster.vm.playbook.csv.j2
+        dest: ./files/proxmox.cluster.vm.playbook.csv
+        backup: true
+        force: true
+      delegate_to: 127.0.0.1
+      run_once: yes

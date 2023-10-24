@@ -21,3 +21,8 @@ run:
 
 inventory:
     ansible-inventory -i inventory.proxmox.yml --list
+
+prepare:
+    source ansible-venv/bin/activate
+    pip install -r requirements.txt
+    ansible-galaxy collection install -r galaxy.requirements.yml
